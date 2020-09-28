@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import {rusheeList} from "./rushees"
 
 class Table extends React.Component {
   constructor(props) {
@@ -432,7 +433,10 @@ class Table extends React.Component {
   }
 
   componentWillMount() {
+
     if(this.state.rushees.length === 0){
+
+      /*
       fetch(window.apiHost + '/vm/scores', {
         method: 'GET',
         origin: window.apiHost,
@@ -445,8 +449,11 @@ class Table extends React.Component {
       })
       .then(myJson => {
         console.log(myJson);
+      */
 
-        var rushees = myJson.rushees;
+
+
+        var rushees = rusheeList;
 
         function compare(a, b){
           let comparison = 0;
@@ -491,11 +498,11 @@ class Table extends React.Component {
 
 
         console.log("rushees", rushees);
-        const rr_array = myJson.rushees.map(rushee => { return rushee.vm2.rr })
-        const ii_array = myJson.rushees.map(rushee => { return rushee.vm2.ii })
-        const gi_array = myJson.rushees.map(rushee => { return rushee.vm2.gi })
-        const bhs_array = myJson.rushees.map(rushee => { return rushee.vm2.bhs })
-        const tot_array = myJson.rushees.map(rushee => { return rushee.vm2.total })
+        const rr_array = rushees.map(rushee => { return rushee.vm2.rr })
+        const ii_array = rushees.map(rushee => { return rushee.vm2.ii })
+        const gi_array = rushees.map(rushee => { return rushee.vm2.gi })
+        const bhs_array = rushees.map(rushee => { return rushee.vm2.bhs })
+        const tot_array = rushees.map(rushee => { return rushee.vm2.total })
         
         var locked = [];
         //need to set locked array IMPORTANT
@@ -528,7 +535,7 @@ class Table extends React.Component {
           bhs_array: bhs_array,
           tot_array: tot_array
         });
-      });
+        console.log(rushees)
     }
 
   }
